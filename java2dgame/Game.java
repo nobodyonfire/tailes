@@ -2,6 +2,7 @@ package java2dgame;
 
 
 import Level.Level;
+import entities.Player;
 import gfx.Colours;
 import gfx.Font;
 import gfx.Screen;
@@ -40,6 +41,7 @@ public class Game extends Canvas implements Runnable {
  
 	private Screen screen;
 	public InputHandler input;
+        public Player player;
 	public Level level;
  
 	public Game() {
@@ -76,7 +78,9 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
 		input = new InputHandler(this);
 		level = new Level(64, 64);
-	}
+                player = new Player(level,0,0,input);
+                level.addEntity(player);
+	} 
  
 	public synchronized void start() {
 		running = true;
@@ -129,25 +133,8 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
  
-	private int x = 0;
-	private int y = 0;
- 
 	public void tick() {
 		tickCount++;
- 
-		if (input.up.isPressed()) {
-			y -= 1;
-		}
-		if (input.down.isPressed()) {
-			y += 1;
-		}
-		if (input.left.isPressed()) {
-			x -= 1;
-		}
-		if (input.right.isPressed()) {
-			x += 1;
-		}
- 
 		level.tick();
 	}
  
@@ -158,8 +145,8 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
  
-		int xOffset = x - (screen.width / 2);
-		int yOffset = y - (screen.height / 2);
+		int xOffset = player.x - (screen.width / 2);
+		int yOffset = player.y - (screen.height / 2);
  
 		level.renderTiles(screen, xOffset, yOffset);
  
@@ -170,6 +157,8 @@ public class Game extends Canvas implements Runnable {
 			}
 			Font.render((x % 10) + "", screen, 0 + (x * 8), 0, colour);
 		}
+                
+                level.renderEntities(screen);
  
 		for (int y = 0; y < screen.height; y++) {
 			for (int x = 0; x < screen.width; x++) {
