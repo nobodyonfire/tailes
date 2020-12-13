@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable {
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
  
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
@@ -77,7 +77,7 @@ public class Game extends Canvas implements Runnable {
  
 		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
 		input = new InputHandler(this);
-		level = new Level(64, 64);
+		level = new Level("/Level/water_test_level.png");
                 player = new Player(level,0,0,input);
                 level.addEntity(player);
 	} 
@@ -155,7 +155,7 @@ public class Game extends Canvas implements Runnable {
 			if (x % 10 == 0 && x != 0) {
 				colour = Colours.get(-1, -1, -1, 500);
 			}
-			Font.render((x % 10) + "", screen, 0 + (x * 8), 0, colour);
+			Font.render((x % 10) + "", screen, 0 + (x * 8), 0, colour,1);
 		}
                 
                 level.renderEntities(screen);
