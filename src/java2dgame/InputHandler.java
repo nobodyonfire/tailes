@@ -37,6 +37,8 @@ public class InputHandler implements KeyListener{
     public Key left = new Key();
     public Key right = new Key();
     
+    public Key dash = new Key();   //on définit la variable pour la touche du dash
+    
 
 
     public void keyPressed(KeyEvent e) {
@@ -66,6 +68,9 @@ public class InputHandler implements KeyListener{
             right.toggle(isPressed);
         }
         
+        if (keyCode == KeyEvent.VK_F) {   //On définit la touche qui correspond au dash
+        	dash.toggle(isPressed);
+        }
           
             
             
