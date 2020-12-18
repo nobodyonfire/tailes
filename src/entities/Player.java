@@ -13,9 +13,10 @@ public class Player extends Mob {
     private int scale= 1;
     protected boolean isSwimming =false;
     private int tickCount=0;
+    private int cooldownDash=0; 
     
-    public Player(Level level, int x , int y, InputHandler input){
-        super(level,"Player",x,y,2);
+    public Player(Level level, int x , int y, InputHandler input, int speed){
+        super(level,"Player",x,y,speed);
         this.input=input;
         
     }
@@ -23,19 +24,50 @@ public class Player extends Mob {
     public void tick() {
         int xa=0;
         int ya=0;
+      
+        //Le player peut dash dans une direction s'il presse la direction et la touche du dash
+        //Il ne peut pas dash tout le temps ( sinon c'est comme augmenter sa move speed )
+        //Donc on met un cooldown
+        
+        int vitesseDash = 30;
         
         if (input.up.isPressed()) {
-                ya -= 1;
+             if(input.dash.isPressed() && cooldownDash>40) {
+            	ya -= vitesseDash;
+            	cooldownDash=0;
+            }
+            else {
+            	ya -= 1;
+            }
         }
         if (input.down.isPressed()) {
-                ya += 1;
+            if(input.dash.isPressed() && cooldownDash>40) {
+            	ya += vitesseDash;
+            	cooldownDash=0;
+            }
+            else {
+            	ya += 1;
+            }
         }
         if (input.left.isPressed()) {
-                xa -= 1;
+            if(input.dash.isPressed() && cooldownDash>40) {
+            	xa -= vitesseDash;
+            	cooldownDash=0;
+            }
+            else {
+            	xa -= 1;
+            }
         }
         if (input.right.isPressed()) {
-                xa += 1;
+        	if(input.dash.isPressed() && cooldownDash>40) {
+        		xa += vitesseDash;
+        		cooldownDash=0;
+        	}
+        	else {
+        		xa += 1;
+        	}
         }
+        
         
         if (xa !=0 || ya !=0){
             move(xa,ya);
@@ -53,6 +85,7 @@ public class Player extends Mob {
         
      
         tickCount++;
+        cooldownDash++; //on incrémente le cooldown du dash
     }
 
  
@@ -102,7 +135,7 @@ public class Player extends Mob {
             
         }
         
-        System.out.println("y" + yOffset);
+ 
         screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, flipTop,scale);
         screen.render(xOffset  + modifier -(modifier * flipTop) , yOffset, xTile + 1 + yTile * 32,flipTop,scale);
         
