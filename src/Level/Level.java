@@ -12,7 +12,7 @@ import tiles.Tile;
 
 public class Level {
  
-    private byte[] tiles;
+    private int[] tiles;
     public int width;
     public int height;
 
@@ -29,7 +29,7 @@ public class Level {
             this.imagePath=imagePath;
             this.loadLevelFromFile();
         } else {
-            tiles = new byte[width * height];
+            tiles = new int[width * height];
             this.width = 64;
             this.height = 64;
             this.generateLevel();
@@ -43,7 +43,7 @@ public class Level {
             this.image = ImageIO.read(Level.class.getResource(this.imagePath));
             this.width= image.getWidth();
             this.height=image.getHeight();
-            tiles = new byte [width * height];
+            tiles = new int [width * height];
             this.loadTiles();
             
         } catch(IOException e){
