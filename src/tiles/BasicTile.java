@@ -13,7 +13,7 @@ public class BasicTile extends Tile {
 	}
         
         public void tick(){
-            
+    
         }
  
 	public void render(Screen screen, Level level, int x, int y) {

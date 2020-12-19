@@ -17,9 +17,12 @@ public abstract class Tile {
         public static final Tile Grass1 = new BasicTile(5,4,0,0xFF00FE00);
                 
         
-        public static final Tile lamptop = new AnimatedSolidTile(256,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,200);
+        public static final Tile lamptop = new AnimatedSolidTile(10,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,300);
         public static final Tile lampbottom = new BasicSolidTile(11, 2, 8,0xFF0B0000);
         
+        public static final Tile Brazier = new AnimatedSolidTile(12,new int[][]{{0,7},{1,7},{0,8},{1,8}},0xFF0C0000,300);
+        
+
         
         public static final Tile Cliff1 = new BasicSolidTile(100,3,0,0xFF010000);
         public static final Tile Cliff2 = new BasicSolidTile(101,5,0,0xFF010001);
@@ -81,6 +84,7 @@ public abstract class Tile {
         
 	public Tile(int id, boolean isSolid, boolean isEmitter,int levelColour) {
 		this.id = id;
+                
 		if (tiles[id] != null) {
 			throw new RuntimeException("Duplicate tile id on" + id);
 		}
@@ -88,6 +92,7 @@ public abstract class Tile {
 		this.emitter = isEmitter;
                 this.levelColour = levelColour;
 		tiles[id] = this;
+   
 	}
  
 	public int getId() {
