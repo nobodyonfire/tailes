@@ -76,6 +76,7 @@ public class Game extends Canvas implements Runnable {
 		level = new Level("/Level/level1.png");
                 player = new Player(level,300,300,input,2);
                 level.addEntity(player);
+                
 	} 
  
 	public synchronized void start() {
@@ -172,7 +173,7 @@ public class Game extends Canvas implements Runnable {
                             }
                     }
             }
-
+            
             Graphics g = bs.getDrawGraphics();
             g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
             g.dispose();
