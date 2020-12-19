@@ -97,10 +97,11 @@ public class Level {
         }
         
         for (Tile t : Tile.tiles){
-            if(t == null){
-                break;
-            }
-            t.tick();
+
+            if(t != null){
+                 t.tick();
+            } 
+            
         }
     }
 
