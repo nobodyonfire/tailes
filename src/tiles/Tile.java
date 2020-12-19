@@ -17,12 +17,35 @@ public abstract class Tile {
         public static final Tile Grass1 = new BasicTile(5,4,0,0xFF00FE00);
                 
         
-        public static final Tile lamptop = new AnimatedSolidTile(10,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,300);
-        public static final Tile lampbottom = new BasicSolidTile(11, 2, 8,0xFF0B0000);
+        public static final Tile lamptop = new AnimatedSolidTile(10,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,300); /*  [10/0/0]  */
+        public static final Tile lampbottom = new BasicSolidTile(11, 2, 8,0xFF0B0000); /*  [11/0/0]  */
         
-        public static final Tile Brazier = new AnimatedSolidTile(12,new int[][]{{0,7},{1,7},{0,8},{1,8}},0xFF0C0000,300);
+        public static final Tile Brazier = new AnimatedSolidTile(12,new int[][]{{0,7},{1,7},{0,8},{1,8}},0xFF0C0000,300); /*  [12/0/0]  */
         
-
+        
+        public static final Tile benchrighttop = new BasicSolidTile(13,5,7,0xFF0D0000); /*  [13/0/0]  */
+        public static final Tile benchrightbottom = new BasicSolidTile(14,5,8,0xFF0E0000); /*  [14/0/0]  */
+        
+        public static final Tile benchlefttop = new BasicSolidTile(15,8,7,0xFF0F0000); /*  [15/0/0]  */
+        public static final Tile benchleftbottom = new BasicSolidTile(16,8,8,0xFF100000); /*  [15/0/0]  */
+        
+        public static final Tile benchltoptop = new BasicSolidTile(17,6,7,0xFF110000); /*  [16/0/0]  */
+        public static final Tile benchtopbottom = new BasicSolidTile(18,7,7,0xFF120000); /*  [17/0/0]  */
+        
+        public static final Tile benchlbottomtop = new BasicSolidTile(19,6,8,0xFF130000); /*  [18/0/0]  */
+        public static final Tile benchbottombottom = new BasicSolidTile(20,7,8,0xFF140000); /*  [19/0/0]  */
+        
+        public static final Tile tree11 = new BasicSolidTile (21,2,9,0xFF150000); 
+        public static final Tile tree21 = new BasicSolidTile (22,3,9,0xFF160000);
+        public static final Tile tree31 = new BasicSolidTile (23,2,10,0xFF170000);
+        public static final Tile tree41 = new BasicSolidTile (24,3,10,0xFF180000);
+        public static final Tile tree51 = new BasicSolidTile (25,2,11,0xFF190000);
+        public static final Tile tree61 = new BasicSolidTile (26,3,11,0xFF1A0000);  
+        public static final Tile tree71 = new BasicSolidTile (27,2,12,0xFF1B0000);
+        public static final Tile tree81 = new BasicSolidTile (28,3,12,0xFF1C0000);  
+        
+        
+        
         
         public static final Tile Cliff1 = new BasicSolidTile(100,3,0,0xFF010000);
         public static final Tile Cliff2 = new BasicSolidTile(101,5,0,0xFF010001);
