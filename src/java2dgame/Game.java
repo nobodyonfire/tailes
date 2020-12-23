@@ -2,6 +2,7 @@ package java2dgame;
 
 
 import Level.Level;
+import entities.Cat;
 import entities.Player;
 import gfx.Font;
 import gfx.Screen;
@@ -43,6 +44,8 @@ public class Game extends Canvas implements Runnable {
 	public InputHandler input;
         public Player player;
 	public Level level;
+        public Cat Cat;
+ 
  
 	public Game() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -74,8 +77,13 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet64.png"));
 		input = new InputHandler(this);
 		level = new Level("/Level/level1.png");
-                player = new Player(level,300,300,input,2);
+                player = new Player(level,330,330,input,2);
+                Cat = new Cat(level,"jean",360,360,1);
+                
+                
                 level.addEntity(player);
+                level.addEntity(Cat);
+             
                 
 	} 
  
@@ -133,6 +141,7 @@ public class Game extends Canvas implements Runnable {
 	public void tick() {
 		tickCount++;
 		level.tick();
+                level.tickattack(screen);
 	}
  
 	public void render() {
@@ -151,11 +160,13 @@ public class Game extends Canvas implements Runnable {
             int xOffset = player.x - (screen.width / 2);
             int yOffset = player.y - (screen.height / 2);
 
+            
             level.renderTiles(screen, xOffset, yOffset);
 
-
-
             level.renderEntities(screen);
+            
+            level.renderTilesUP(screen, xOffset, yOffset);
+            
 
             for (int y = 0; y < screen.height; y++) {
                     for (int x = 0; x < screen.width; x++) {
