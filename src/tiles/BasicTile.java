@@ -7,9 +7,10 @@ public class BasicTile extends Tile {
  
 	protected int tileId;
  
-	public BasicTile(int id, int x, int y,int levelColour) {
+	public BasicTile(int id, int x, int y,int levelColour, boolean emitter) {
 		super(id, false, false, levelColour);
 		this.tileId = x + y * 32;
+                this.emitter=emitter;
 	}
         
         public void tick(){
