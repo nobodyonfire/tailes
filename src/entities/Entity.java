@@ -19,6 +19,11 @@ public abstract class Entity {
     
     public abstract void tick();
     
+    public abstract void tickattack(Screen screen);
+    
+  
     public abstract void render(Screen screen);
+
+    public abstract void isAttacked(String name, int xMin, int xMax, int yMin, int yMax, int damage);
     
 }

@@ -23,9 +23,12 @@ public abstract class Mob extends Entity {
     
     public void move(int xa,int ya){
         
+        
         if (xa !=0 && ya!=0){
+            
+            move(0,ya); 
             move(xa,0);
-            move(0,ya);
+            
             numSteps--;
             return; 
         }
@@ -43,9 +46,11 @@ public abstract class Mob extends Entity {
             
             x+= xa*speed;
             y+= ya*speed;
+            
         }
         
     }
+ 
     
     public abstract boolean hasCollided(int xa,int ya);
     
