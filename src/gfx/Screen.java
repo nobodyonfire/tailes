@@ -3,7 +3,7 @@ package gfx;
 
 public class Screen {
  
-	public static final int MAP_WIDTH = 32*32;
+	public static final int MAP_WIDTH = 32*32*32;
 	public static final int MAP_WIDTH_MASK = MAP_WIDTH - 1;
  
         public static final byte BIT_MIRROR_X = 0x01;
@@ -38,6 +38,7 @@ public class Screen {
     public void render(int xPos, int yPos, int tile, int mirrorDir, int scale) {
             xPos -= xOffset;
             yPos -= yOffset;
+  
 
             boolean mirrorX=(mirrorDir & BIT_MIRROR_X)>0;
             boolean mirrorY=(mirrorDir & BIT_MIRROR_Y)>0;
