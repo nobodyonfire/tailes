@@ -12,6 +12,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -24,9 +25,12 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable {
  
 	private static final long serialVersionUID = 1L;
+        
+        Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
  
-	public static final int WIDTH = 600;
-	public static final int HEIGHT = WIDTH / 12 * 7;
+        public final int WIDTH = tailleMoniteur.width * 8/25;
+        public final int HEIGHT = tailleMoniteur.height * 8/27;
+	
 	public static final int SCALE = 3;
 	public static final String NAME = "Game";
  

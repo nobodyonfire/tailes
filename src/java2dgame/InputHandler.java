@@ -41,7 +41,9 @@ public class InputHandler implements KeyListener{
     
     public Key attack = new Key();   //on définit la variable pour la l'attaque
     
-
+    public Key ability1 = new Key();
+    
+    
 
     public void keyPressed(KeyEvent e) {
         toggleKey(e.getKeyCode(),true);
@@ -76,6 +78,10 @@ public class InputHandler implements KeyListener{
           
         if (keyCode == KeyEvent.VK_A) {   //On définit la touche qui correspond à l'attaque
         	attack.toggle(isPressed);
+        }
+        
+        if (keyCode == KeyEvent.VK_W) {   //On définit la touche qui correspond à l'attaque
+        	ability1.toggle(isPressed);
         }
             
             
