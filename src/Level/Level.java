@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.imageio.ImageIO;
 import tiles.Tile;
@@ -92,11 +93,14 @@ public class Level {
     }
 
     public void tick() {
-        for (Entity e : entities){
+        for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) { 
+        	Entity e= iterator.next();
             e.tick();
+            if(e.getPv()<=0) {     // Ici on veut voir si les unitées sont mortes
+                iterator.remove();
+            }
         }
-         
-        
+
         for (Tile t : Tile.tiles){
 
             if(t != null){
