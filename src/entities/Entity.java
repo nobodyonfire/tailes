@@ -8,6 +8,7 @@ public abstract class Entity {
     
     public int x,y;
     protected Level level;
+   protected int pv;
     
     public Entity(Level level){
         init(level);
@@ -25,5 +26,8 @@ public abstract class Entity {
     public abstract void render(Screen screen);
 
     public abstract void isAttacked(String name, int xMin, int xMax, int yMin, int yMax, int damage);
-    
+
+    public int getPv() {   //récupère les PVs
+       return pv;
+   } 
 }

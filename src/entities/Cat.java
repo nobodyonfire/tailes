@@ -5,6 +5,7 @@ import gfx.Font;
 
 import gfx.Screen;
 import java.util.Random;
+import java.util.logging.Logger;
 
 
 
@@ -14,7 +15,7 @@ public class Cat extends Mob {
     protected boolean isSwimming =false;
     private int tickCount=0;
     int random;
-    private int pv;
+  
  
     
     public Cat(Level level,String name, int x , int y, int speed){
@@ -27,11 +28,13 @@ public class Cat extends Mob {
         int ya=0;
         Random rn = new Random();
         
+  
+        
 
         if (tickCount%20==0)
             random =rn.nextInt(8);
 
-        /*
+     
     
         if (random ==0)
             xa+=1;
@@ -42,7 +45,8 @@ public class Cat extends Mob {
         if (random ==3)
             ya-=1;
   
-        */
+  
+
         if (xa !=0 || ya !=0){
             move(xa,ya);
             
@@ -82,7 +86,7 @@ public class Cat extends Mob {
         
         
         
-        screen.render(this.x, this.y, 200, 0x00, 1);
+        /*screen.render(this.x, this.y, 200, 0x00, 1);*/
         
         
         String Pv = String.valueOf(this.pv);
@@ -117,10 +121,10 @@ public class Cat extends Mob {
     
     public boolean hasCollided(int xa, int ya) {
 
-      int xMin = 36;
-      int xMax = 60;
-      int yMin = 36;
-      int yMax = 60;
+      int xMin = 8;
+      int xMax = 28;
+      int yMin = 8;
+      int yMax = 28;
 
       for (int x = xMin ; x <xMax ; x++){
           if (isSolidTile(xa,ya,x,yMin)) {
