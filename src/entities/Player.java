@@ -170,7 +170,7 @@ public class Player extends Mob {
  
     public void render(Screen screen) {
         int xTile = 0;
-        int yTile = 21;
+        int yTile = 31;
 
         int animationdelay =50;
         
@@ -184,8 +184,12 @@ public class Player extends Mob {
         int xModif=0;
         int yModif=0;
         
-       /* screen.render(this.x, this.y, 200, 0x00, 1);*/
+        int xAbility=xOffset;
+        int yAbility=yOffset;
         
+        int modificationAttack=yTile;
+       
+       /* screen.render(this.x, this.y, 200, 0x00, 1);*/
         
      
         
@@ -198,13 +202,21 @@ public class Player extends Mob {
         
         String Pv = String.valueOf(this.pv);    /* Affichage des PV  */
         Font.render(Pv, screen, xOffset +20 + Pv.length(),yOffset -12, 1); 
+
+        if ( xOffset<290){
+                xAbility=290;
+        }
+        if ( yOffset<143){
+                yAbility=143;
+        }
+        
+    
+        if (cooldownAbility1> 500){    /* Affichage ability1  */
             
-      
-         if (cooldownAbility1> 500){    /* Affichage ability1  */
-            screen.render(xOffset-100, yOffset +130, 352, 0x00, 2);
+            screen.render(xAbility-100, yAbility +130, 352, 0x00, 2);
         }else {
-             screen.render(xOffset-100, yOffset +130, 384, 0x00, 2);
-         }
+             screen.render(xAbility-100,yAbility +130, 384, 0x00, 2);
+        }
          
         if (cooldownAttack<=20 && !isSwimming){ /* ATTAQUE  */
                 
@@ -217,41 +229,42 @@ public class Player extends Mob {
                    xModif=32;
                 }
                 if (movingDir==1){
-                   yModif=20;
+                   yModif=31;
                 }
 
                  if(tickCount %40 <10){
+                  
 
-                    screen.render(x - xModif  , y -32, xTile + 7 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y -32, xTile + 8 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif    , y , xTile + 7 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y , xTile + 8 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif    , y +32, xTile + 7 + (yTile+(movingDir*3)-1) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y +32 , xTile + 8 + (yTile+(movingDir*3)-1) * 32, 0,scale);
+                    screen.render(x - xModif  , y -32, xTile + 7 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y -32, xTile + 8 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y , xTile + 7 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y , xTile + 8 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y +32, xTile + 7 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y +32 , xTile + 8 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
 
                 } else if (10 <= tickCount%40 && tickCount % 40 <20){
-                    screen.render(x - xModif    , y -32, xTile + 9 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y -32, xTile + 10 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif    , y , xTile + 9 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y , xTile + 10 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif    , y +32, xTile + 9 + (yTile+(movingDir*3)-1) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y +32 , xTile + 10 + (yTile+(movingDir*3)-1) * 32, 0,scale);
+                    screen.render(x - xModif    , y -32, xTile + 9 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y -32, xTile + 10 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y , xTile + 9 + (yTile+(movingDir*3) + 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y , xTile + 10 + (yTile+(movingDir*3) + 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y +32, xTile + 9 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y +32 , xTile + 10 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
 
                 } else if (20 <= tickCount%40 && tickCount % 40 <30){
-                    screen.render(x - xModif    , y -32, xTile + 11 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y -32, xTile + 12 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif    , y , xTile + 11 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y , xTile + 12 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif    , y +32, xTile + 11 + (yTile+(movingDir*3)-1) * 32, 0,scale);
-                    screen.render(x - xModif  +32  , y +32 , xTile + 12 + (yTile+(movingDir*3)-1) * 32, 0,scale);
+                    screen.render(x - xModif    , y -32, xTile + 11 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y -32, xTile + 12 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y , xTile + 11 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y , xTile + 12 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif    , y +32, xTile + 11 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
+                    screen.render(x - xModif  +32  , y +32 , xTile + 12 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
 
                 } else {
-                    screen.render(x - xModif - yModif    , y -32, xTile + 13 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif - yModif +32  , y -32, xTile + 14 + (yTile+(movingDir*3)-3) * 32, 0,scale);
-                    screen.render(x - xModif - yModif    , y , xTile + 13 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif - yModif  +32  , y , xTile + 14 + (yTile+(movingDir*3)-2) * 32, 0,scale);
-                    screen.render(x - xModif - yModif    , y +32, xTile + 13 + (yTile+(movingDir*3)-1) * 32, 0,scale);
-                    screen.render(x - xModif - yModif  +32  , y +32 , xTile + 14 + (yTile+(movingDir*3)-1) * 32, 0,scale);
+                    screen.render(x - xModif - yModif    , y -32, xTile + 13 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif - yModif +32  , y -32, xTile + 14 + (yTile+(movingDir*3)+ 1) * 32, 0,scale);
+                    screen.render(x - xModif - yModif    , y , xTile + 13 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif - yModif  +32  , y , xTile + 14 + (yTile+(movingDir*3)+ 1 + 1) * 32, 0,scale);
+                    screen.render(x - xModif - yModif    , y +32, xTile + 13 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
+                    screen.render(x - xModif - yModif  +32  , y +32 , xTile + 14 + (yTile+(movingDir*3)+ 1 + 2) * 32, 0,scale);
                 }
                  return;
             
@@ -286,44 +299,47 @@ public class Player extends Mob {
             
         }
 
-     
+         if( cooldownAbility1activated){
+                modificationAttack=yTile + 8;
+            }
         
         if( isMoving){
-    
+            
+           
             if(tickCount% animationdelay <(animationdelay/6)){
-                screen.render(x  , y -modifier, xTile + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y , xTile + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x  , y -modifier, xTile + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y , xTile + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             else if ( (tickCount% animationdelay >(animationdelay/6)) &&  (tickCount% animationdelay <(2*animationdelay/6)) ) {
-                screen.render(x , y -modifier, xTile + 1 + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile + 1 + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + 1 + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile + 1 + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }   
             else if ( (tickCount% animationdelay >(2*animationdelay/6)) &&  (tickCount% animationdelay <(3*animationdelay/6)) ) {
-                screen.render(x , y -modifier, xTile + 2 + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile + 2 + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + 2 + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile + 2 + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             else if ( (tickCount% animationdelay >(3*animationdelay/6)) &&  (tickCount% animationdelay <(4*animationdelay/6)) ) {
-                screen.render(x , y -modifier, xTile + 3 + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile + 3 + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + 3 + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile + 3 + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             else if ( (tickCount% animationdelay >(4*animationdelay/6)) &&  (tickCount% animationdelay <(5*animationdelay/6)) ) {
-                screen.render(x , y -modifier, xTile + 4 + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile + 4 + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + 4 + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile + 4 + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             else if ( (tickCount% animationdelay >(5*animationdelay/6)) &&  (tickCount% animationdelay <(6*animationdelay/6)) ) {
-                screen.render(x , y -modifier, xTile + 5 + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile + 5 + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + 5 + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile + 5 + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             else {
-                screen.render(x , y -modifier, xTile + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y, xTile  + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y, xTile  + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
             return;
         }
         
         if (!isSwimming && !isDashing  && !isMoving){
-                screen.render(x , y -modifier, xTile + (yTile+(movingDir *2)+1) * 32, 0,scale);
-                screen.render(x , y , xTile  + (yTile+(movingDir *2)+2) * 32, 0,scale);
+                screen.render(x , y -modifier, xTile + (modificationAttack+(movingDir *2)+1) * 32, 0,scale);
+                screen.render(x , y , xTile  + (modificationAttack+(movingDir *2)+2) * 32, 0,scale);
             }
         
     }
@@ -342,7 +358,7 @@ public class Player extends Mob {
       int xMin =12;
       int xMax = 20;
       int yMin = 15;
-      int yMax = 32;
+      int yMax = 28;
 
       for (int x = xMin ; x <xMax ; x++){
           if (isSolidTile(xa,ya,x,yMin)) {
