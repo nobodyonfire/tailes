@@ -48,6 +48,23 @@ public abstract class Tile {
         public static final Tile flowerpot2 = new BasicSolidTile (30,9,8,0xFF1E0000,false);
         public static final Tile flowerpot3 = new BasicSolidTile (31,10,7,0xFF1F0000,false);
         
+        public static final Tile muralwall = new BasicTile (39,8,2,0xFF270000,false);
+        public static final Tile muralmiddle = new BasicTile (40,9,0,0xFF280000,false);
+        public static final Tile muralLeft = new BasicTile (41,9,1,0xFF290000,false);
+        public static final Tile muralRight = new BasicTile (42,10,1,0xFF2A0000,false);
+        public static final Tile muralGrass = new BasicTile (43,11,1,0xFF2B0000,false);
+        public static final Tile muralTL = new BasicTile (44,9,2,0xFF2C0000,false);
+        public static final Tile muralTR = new BasicTile (45,10,2,0xFF2D0000,false);
+        public static final Tile muralBL = new BasicTile (46,9,3,0xFF2E0000,false);
+        public static final Tile muralBR = new BasicTile (47,10,3,0xFF2F0000,false);
+
+        public static final Tile muralITL = new BasicTile (48,11,2,0xFF300000,false);
+        public static final Tile muralITR = new BasicTile (49,12,2,0xFF310000,false);
+        public static final Tile muralIBL = new BasicTile (50,11,3,0xFF320000,false);
+        public static final Tile muralIBR = new BasicTile (51,12,3,0xFF330000,false);
+        public static final Tile muralstairtop = new BasicTile (52,13,2,0xFF340000,false);
+        public static final Tile muralstairbottom = new BasicTile (53,13,3,0xFF350000,false);
+
         
         
         public static final Tile Cliff1 = new BasicSolidTile(100,3,0,0xFF010000,false);
@@ -153,7 +170,9 @@ public abstract class Tile {
         public static final Tile fountain35 = new BasicTile(235,31,6,0xFF002300,false); /*  [0/35/0]  */
     
         
-  
+       
+   
+        
         
         
         
