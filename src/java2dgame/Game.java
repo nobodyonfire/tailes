@@ -88,6 +88,7 @@ public class Game extends Canvas implements Runnable {
                 level.addEntity(player);
                 level.addEntity(Cat);
              
+             
                 
 	} 
  
