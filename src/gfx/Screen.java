@@ -47,6 +47,7 @@ public class Screen {
             int xTile = tile % 32;
             int yTile = tile / 32;
             
+
             int tileOffset = (xTile << 5) + (yTile << 5) * sheet.width ;
             
      

@@ -33,10 +33,11 @@ public class SpriteSheet {
        
        
         
-        pixels= image.getRGB(0, 0, width, width, null , 0, width);
+        pixels= image.getRGB(0, 0, width, height, null , 0, width);
+  
         
 
-    
+      
        for(int i =0; i<pixels.length;i++){   
           pixels[i]=(image.getRGB(i%(32*32),i/(32*32)));
        
@@ -47,14 +48,7 @@ public class SpriteSheet {
         int green;
         int red;
         int alpha;
+      
         
-        for( int i=0; i<165;i++){
-            red = pixels[i] & 0xff;
-            green = (pixels[i] & 0xff00) >> 8;
-            blue = (pixels[i] & 0xff0000) >> 16;
-            alpha = (pixels[i] & 0xff000000) >> 24;
-        }
-        
- 
     }
 }
