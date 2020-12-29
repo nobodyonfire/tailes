@@ -6,19 +6,21 @@ import gfx.Font;
 import gfx.Screen;
 import java.util.Random;
 import java.util.logging.Logger;
+import static java2dgame.Game.sleep;
+import java2dgame.InputHandler;
 
 
-
-public class Cat extends Mob {
+public class Pnj1 extends Mob {
 
     private int scale= 1;
     protected boolean isSwimming =false;
     private int tickCount=0;
     int random;
-  
+    private InputHandler input;
+    private boolean isInteracting=false;
  
     
-    public Cat(Level level,String name, int x , int y, int speed){
+    public Pnj1(Level level,String name, int x , int y, int speed){
         super(level,name,x,y,speed);
         this.pv=500;
     }
@@ -26,36 +28,26 @@ public class Cat extends Mob {
     public void tick() {
         int xa=0;
         int ya=0;
-        Random rn = new Random();
+
         
-  
+        if (tickCount%400<200){
+            xa=1;
+        }else{
+            xa=-1;
+        }
+        
         
 
-        if (tickCount%20==0)
-            random =rn.nextInt(8);
-
-     
-    
-        if (random ==0)
-            xa+=1;
-        if (random ==1)
-            xa-=1;
-        if (random ==2)
-            ya+=1;
-        if (random ==3)
-            ya-=1;
-  
-     
 
         if (xa !=0 || ya !=0){
             move(xa,ya);
-            
             isMoving =true; 
         } else {
             isMoving =false;
         }
         
-
+        
+        
         if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==3) || (level.getTile(this.x+16>>5,this.y+16>>5).getId() <=144 && level.getTile(this.x+16>>5,this.y+16>>5).getId() >=130)){
             isSwimming = true;
         }
@@ -74,13 +66,14 @@ public class Cat extends Mob {
  
     
   
+    @SuppressWarnings("empty-statement")
     public void render(Screen screen) {
         
         int xTile = 0;
-        int yTile = 17;
+        int yTile = 17+28;
         int walkingSpeed =4;
         
-        
+        boolean test= false;
         int modifier =32*scale;
     
         
@@ -89,7 +82,7 @@ public class Cat extends Mob {
         /*screen.render(this.x, this.y, 200, 0x00, 1);*/
         
         
-        String Pv = String.valueOf(this.pv);
+        String Pv = this.name;
         Font.render(Pv, screen, x+ 6 +  Pv.length(),y -5  , 1);
         if (random > 3){
             screen.render(x, y, xTile + 1 + (yTile+2) * 32, 0,scale);   
@@ -103,6 +96,11 @@ public class Cat extends Mob {
                 screen.render(x, y, xTile + (yTile+movingDir+1) * 32 +2 , 0,scale);
             }
         }
+        
+        if(isInteracting){
+            Font.render("SALUT C UN TEST", screen, x-100, y-100, 1); 
+        }
+        
 
    
         
@@ -110,23 +108,26 @@ public class Cat extends Mob {
       
     }
     
-    public boolean isAttacked( String name, int xMin , int xMax, int yMin, int yMax, int damage ){
-        /*
-        System.out.println("chat coordonées " + this.x + " " + this.y);
-        System.out.println("INFOS : " + "NOM :"+ name+ " xMin :"+ xMin + " xMax :"+ xMax + " yMin :"+ yMin+ " yMax :"+ yMax + " damage :"+ damage );
-*/
-        if (this.x<xMax && this.x>xMin && this.y<yMax && this.y>yMin ){   
-            this.pv=pv-damage;
+    public boolean interaction(int x, int y) {
+        if (x<this.x+32 && x>this.x-32 && y<this.y+32 && y>this.y-32  ){
+            isInteracting=true;
+            System.out.println("salut "+ "x " + x + " y " + y ); 
             return true;
         }
+        return false;
+        
+        
+    }
+    
+    public boolean isAttacked( String name, int xMin , int xMax, int yMin, int yMax, int damage ){
         return false;
     }
     
     public boolean hasCollided(int xa, int ya) {
-
-      int xMin = 8;
-      int xMax = 28;
-      int yMin = 8;
+        
+      int xMin = 12;
+      int xMax = 20;
+      int yMin = 15;
       int yMax = 28;
 
       for (int x = xMin ; x <xMax ; x++){
@@ -153,12 +154,6 @@ public class Cat extends Mob {
 
       return false;
   }
-
-
- public boolean interaction(int x, int y) {
-     return false;
-    }
-    
 
 
       
