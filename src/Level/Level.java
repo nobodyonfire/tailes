@@ -21,6 +21,8 @@ public class Level {
     private String imagePath;
     private BufferedImage image;
     
+    protected boolean attacked = false;
+    protected boolean destroy = false;
 
 
 
@@ -93,12 +95,24 @@ public class Level {
     }
 
     public void tick() {
+        
         for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) { 
-        	Entity e= iterator.next();
+            
+            Entity e= iterator.next();
             e.tick();
+      
             if(e.getPv()<=0) {     // Ici on veut voir si les unitées sont mortes
                 iterator.remove();
             }
+             if(e.interaction==true){
+                for (Entity einteract: entities){
+                    if(einteract.interaction(e.x, e.y)){
+                        e.interaction=true;
+                    }
+                }
+                e.interaction=false;
+            }
+           
         }
 
         for (Tile t : Tile.tiles){
@@ -110,8 +124,10 @@ public class Level {
     }
     
     public void tickattack(Screen screen){
+        
         for (Entity e : entities){
-            e.tickattack(screen);
+            
+            e.tickattack(screen);         
         }
     }
 
@@ -160,10 +176,24 @@ public class Level {
         }
     }
     
-    public void attackEntities(Screen screen,String name, int xMin , int xMax, int yMin, int yMax, int damage) {
+    public boolean attackEntities(Screen screen,String name, int xMin , int xMax, int yMin, int yMax, int damage) {
+
         for (Entity e : entities){
-            e.isAttacked( name,  xMin ,  xMax, yMin,yMax, damage );
+            attacked = false;
+            destroy = e.isAttacked( name,  xMin ,  xMax, yMin,yMax, damage );
+            if (attacked== false && destroy==false ){
+                attacked= false;
+            }
+            else {
+                attacked = true;
+            }
         }
+        if (entities.isEmpty()){
+            return false;
+        }
+      
+        return attacked;
+        
     }
  
     public Tile getTile(int x, int y) {
