@@ -85,6 +85,9 @@ public abstract class Tile {
         public static final Tile roadcrossingo = new BasicTile(70,6,2,0xFF460000,false); /*  [70/0/0]  */
         public static final Tile roadcrossinge = new BasicTile(71,7,2,0xFF470000,false); /*  [71/0/0]  */
         
+        public static final Tile sword = new BasicTile(72,0,9,0xFF480000,false); /*  [72/0/0]  */
+        public static final Tile bow = new BasicTile(73,1,9,0xFF490000,false); /*  [73/0/0]  */
+        
         public static final Tile pavedroadhorizontal1 = new BasicTile(96,0,3,0xFF600000,false); /*  [96/0/0]  */
         public static final Tile pavedroadhorizontal2 = new BasicTile(97,1,3,0xFF610000,false); /*  [97/0/0]  */
         
@@ -170,9 +173,37 @@ public abstract class Tile {
         public static final Tile fountain35 = new BasicTile(235,31,6,0xFF002300,false); /*  [0/35/0]  */
     
         
-       
-   
+        public static final Tile outside1 = new BasicTile(236,19,2,0xFF002400,false); /*  [0/36/0]  */
+        public static final Tile outside2 = new BasicTile(237,20,2,0xFF002500,false); /*  [0/37/0]  */
+        public static final Tile outside3 = new BasicTile(238,21,2,0xFF002600,false); /*  [0/38/0]  */
         
+        public static final Tile outside4 = new BasicTile(239,19,3,0xFF002700,false); /*  [0/36/0]  */
+        public static final Tile outside5 = new BasicTile(240,20,3,0xFF002800,false); /*  [0/37/0]  */
+        public static final Tile outside6 = new BasicTile(241,21,3,0xFF002900,false); /*  [0/38/0]  */
+        
+        public static final Tile outside7 = new BasicTile(242,19,4,0xFF002A00,false); /*  [0/36/0]  */
+        public static final Tile outside8 = new BasicTile(243,20,4,0xFF002B00,false); /*  [0/37/0]  */
+        public static final Tile outside9 = new BasicTile(244,21,4,0xFF002C00,false); /*  [0/38/0]  */
+       
+        public static final Tile outside10 = new BasicTile(245,19,5,0xFF002D00,false); /*  [0/36/0]  */
+        public static final Tile outside11 = new BasicTile(246,20,5,0xFF002E00,false); /*  [0/37/0]  */
+        public static final Tile outside12 = new BasicTile(247,21,5,0xFF002F00,false); /*  [0/38/0]  */
+        
+        public static final Tile outside13 = new BasicTile(248,19,6,0xFF003000,false); /*  [0/36/0]  */
+        public static final Tile outside14 = new BasicTile(249,20,6,0xFF003100,false); /*  [0/37/0]  */
+        public static final Tile outside15 = new BasicTile(250,21,6,0xFF003200,false); /*  [0/38/0]  */
+        
+        public static final Tile outside16 = new BasicTile(251,19,7,0xFF003300,false); /*  [0/36/0]  */
+        public static final Tile outside17 = new BasicTile(252,20,7,0xFF003400,false); /*  [0/37/0]  */
+        public static final Tile outside18 = new BasicTile(253,21,7,0xFF003500,false); /*  [0/38/0]  */
+
+        public static final Tile outside19 = new BasicTile(254,19,8,0xFF003600,false); /*  [0/36/0]  */
+        public static final Tile outside20 = new BasicTile(255,20,8,0xFF003700,false); /*  [0/37/0]  */
+        public static final Tile outside21 = new BasicTile(256,21,8,0xFF003800,false); /*  [0/38/0]  */
+        
+        public static final Tile outside22 = new BasicTile(257,19,9,0xFF003900,false); /*  [0/36/0]  */
+        public static final Tile outside23 = new BasicTile(258,20,9,0xFF003A00,false); /*  [0/37/0]  */
+        public static final Tile outside24 = new BasicTile(259,21,9,0xFF003B00,false); /*  [0/38/0]  */
         
         
         
