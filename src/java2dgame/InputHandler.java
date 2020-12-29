@@ -39,9 +39,13 @@ public class InputHandler implements KeyListener{
     
     public Key dash = new Key();   //on définit la variable pour la touche du dash
     
+    public Key interactionkey = new Key();
+    
     public Key attack = new Key();   //on définit la variable pour la l'attaque
     
     public Key ability1 = new Key();
+    
+    public Key ability2 = new Key();
     
     
 
@@ -80,8 +84,16 @@ public class InputHandler implements KeyListener{
         	attack.toggle(isPressed);
         }
         
-        if (keyCode == KeyEvent.VK_W) {   //On définit la touche qui correspond à l'attaque
+        if (keyCode == KeyEvent.VK_W) {   //On définit la touche qui correspond à l'abilité 1
         	ability1.toggle(isPressed);
+        }
+        
+        if (keyCode == KeyEvent.VK_X) {   //On définit la touche qui correspond à l'abilité 2
+        	ability2.toggle(isPressed);
+        }
+        
+         if (keyCode == KeyEvent.VK_E) {   //On définit la touche qui correspond à l'interaction
+        	interactionkey.toggle(isPressed);
         }
             
             

@@ -4,6 +4,7 @@ package java2dgame;
 import Level.Level;
 import entities.Cat;
 import entities.Player;
+import entities.Pnj1;
 import gfx.Font;
 import gfx.Screen;
 import gfx.SpriteSheet;
@@ -49,6 +50,8 @@ public class Game extends Canvas implements Runnable {
         public Player player;
 	public Level level;
         public Cat Cat;
+        public Pnj1 pnj1;
+      
  
  
 	public Game() {
@@ -63,7 +66,7 @@ public class Game extends Canvas implements Runnable {
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
  
-		frame.setResizable(true);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
@@ -81,15 +84,15 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet64.png"));
 		input = new InputHandler(this);
 		level = new Level("/Level/level1.png");
-                player = new Player(level,330,330,input,2);
+                player = new Player(level,350,300,input,2,"bow");
                 Cat = new Cat(level,"jean",360,360,1);
-                
-                
+                pnj1 = new Pnj1(level,"Mickael",360,500,1);
+                 
                 level.addEntity(player);
                 level.addEntity(Cat);
-             
-             
                 
+
+               
 	} 
  
 	public synchronized void start() {
@@ -147,6 +150,8 @@ public class Game extends Canvas implements Runnable {
 		tickCount++;
 		level.tick();
                 level.tickattack(screen);
+                
+                
 	}
  
 	public void render() {
@@ -195,6 +200,11 @@ public class Game extends Canvas implements Runnable {
             g.dispose();
             bs.show();
 	}
+        
+        /* Méthode pour sleep */
+        public static void sleep(int temps){
+            try {  Thread.sleep(temps); } catch (InterruptedException ie) {}
+        }
  
 	public static void main(String[] args) {
 		new Game().start();
