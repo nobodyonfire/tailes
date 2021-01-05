@@ -11,25 +11,36 @@ import java2dgame.InputHandler;
 
 
 public class Player extends Mob {
-
+    
+    /* Clavier */
     private InputHandler input;
  
+    /* autres */
     private int scale= 1;
     protected boolean isSwimming =false;
+    
+    /* Tick */
     private int tickCount=0;
-    private int tickInteraction=0;
+
+    /* Cooldown */ 
     private int cooldownDash=41;  //cooldown du dash
     private int cooldownAttack=100; 
-    private int dashLength=0;    //gérer le dash ( la forme et vitesse )
-    int vitesseDash = 4;         //maximum de vitesse dans dash ( parabolique )
- 
-    private boolean cooldownAbility1activated=false;
-    private boolean cooldownAbility2activated=false;
     private int cooldownAbility1=1000; 
     private int cooldownAbility2=1000; 
     
+    /* Ability */ 
+    private boolean cooldownAbility1activated=false;
+    private boolean cooldownAbility2activated=false;
+    
+    /* Dash */ 
+    private int dashLength=0;    //gérer le dash ( la forme et vitesse )
+    private int vitesseDash = 4;         //maximum de vitesse dans dash ( parabolique )
     protected boolean isDashing = false;
     
+    /* Interaction */ 
+    
+    
+    /* Arme */
     private String arme;
     private List<List<Integer>> arrow = new ArrayList<List<Integer>>();
     List<Integer> arrowused = new ArrayList<>();
@@ -39,109 +50,126 @@ public class Player extends Mob {
         this.input=input;
         this.pv=20;
         this.arme=arme;
+        this.player=true;
         
     }
 
     public void tick() {
         int xa=0;
         int ya=0;
-        interaction=false;
+   
         
-        
+        if(!this.interaction){
+            
+              this.wantToTalk=false;
        
-        //Le player peut dash dans une direction s'il presse la direction et la touche du dash
-        //Il ne peut pas dash tout le temps ( sinon c'est comme augmenter sa move speed )
-        //Donc on met un cooldown
-        
-        if (input.up.isPressed()) {
-            if(input.dash.isPressed() && cooldownDash>60 && !isSwimming ) {
-            	cooldownDash=0;
-            	dashLength=9; 
-            }
-            if(dashLength>0){
-            	ya -= (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
-            	dashLength-=1;
-            }
-            else {
-            	ya -= 1;
-            }
-        }
-        if (input.down.isPressed()) {
-            if(input.dash.isPressed() && cooldownDash>60 && !isSwimming  ) {
-            cooldownDash=0;
-            dashLength=9; 
-            }
-            if(dashLength>0){
-            	ya += (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
-            	dashLength-=1;
-            }
-            else {
-            	ya += 1;
-            }
-        }
-        if (input.left.isPressed()) {
-        	if(input.dash.isPressed() && cooldownDash>60 && !isSwimming  ) {
-            	cooldownDash=0;
-            	dashLength=9; 
-            }
-            if(dashLength>0){
-            	xa -= (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
-            	dashLength-=1;
-            }
-            else {
-            	xa -= 1;
-            }
-        }
-        if (input.right.isPressed()) {
-        	if(input.dash.isPressed() && cooldownDash>60  && !isSwimming  ) {
-            	cooldownDash=0;
-            	dashLength=9; 
-            }
-            if(dashLength>0){
-            	xa += (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
-            	dashLength-=1;
-            }
-            else {
-            	xa += 1;
-            }
-        }
-        
-        
-        if (input.interactionkey.isPressed() && tickInteraction>100){
-            interaction=true;
-            tickInteraction=0;
-        }
-        
-        if ((xa !=0 || ya !=0) && (cooldownAttack>30) && !this.interaction){
-            move(xa,ya);
-            isMoving =true; 
-        } else {
-            isMoving =false;        
-        }
-        
-        if (cooldownDash>0 && cooldownDash<=60){
-            isDashing=true;
-        } else {
-            isDashing=false;
-        }
-       
-        if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==73)){
-            this.arme="bow";
-        }
-        if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==72)){
-            this.arme="sword";
-        }
-         
-        if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==3) || (level.getTile(this.x+16>>5,this.y+16>>5).getId() <=144 && level.getTile(this.x+16>>5,this.y+16>>5).getId() >=130)){
-            isSwimming = true;
-        }
-     
-        if((level.getTile(this.x+16>>5,this.y+16>>5).getId() !=3) && (level.getTile(this.x+16>>5,this.y+16>>5).getId() >144 || level.getTile(this.x+16>>5,this.y+16>>5).getId() <130)){
-            isSwimming = false;
-        }
-        
+            //Le player peut dash dans une direction s'il presse la direction et la touche du dash
+            //Il ne peut pas dash tout le temps ( sinon c'est comme augmenter sa move speed )
+            //Donc on met un cooldown
 
-        tickInteraction++;
+            if (input.up.isPressed()) {
+                if(input.dash.isPressed() && cooldownDash>60 && !isSwimming ) {
+                    cooldownDash=0;
+                    dashLength=9; 
+                }
+                if(dashLength>0){
+                    ya -= (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
+                    dashLength-=1;
+                }
+                else {
+                    ya -= 1;
+                }
+            }
+            if (input.down.isPressed()) {
+                if(input.dash.isPressed() && cooldownDash>60 && !isSwimming  ) {
+                cooldownDash=0;
+                dashLength=9; 
+                }
+                if(dashLength>0){
+                    ya += (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
+                    dashLength-=1;
+                }
+                else {
+                    ya += 1;
+                }
+            }
+            if (input.left.isPressed()) {
+                    if(input.dash.isPressed() && cooldownDash>60 && !isSwimming  ) {
+                    cooldownDash=0;
+                    dashLength=9; 
+                }
+                if(dashLength>0){
+                    xa -= (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
+                    dashLength-=1;
+                }
+                else {
+                    xa -= 1;
+                }
+            }
+            if (input.right.isPressed()) {
+                    if(input.dash.isPressed() && cooldownDash>60  && !isSwimming  ) {
+                    cooldownDash=0;
+                    dashLength=9; 
+                }
+                if(dashLength>0){
+                    xa += (int) (-(vitesseDash-1)/16)*(dashLength-1)*(dashLength-1) + ((vitesseDash-1)/2)*(dashLength-1) + 1 ;
+                    dashLength-=1;
+                }
+                else {
+                    xa += 1;
+                }
+            }
+
+
+
+            /* Mouvement */
+            if ((xa !=0 || ya !=0) && (cooldownAttack>30)){
+                move(xa,ya);
+                isMoving =true; 
+            } else {
+                isMoving =false;        
+            }
+
+            /* Dash */
+            if (cooldownDash>0 && cooldownDash<=60){
+                isDashing=true;
+            } else {
+                isDashing=false;
+            }
+
+
+            /* Donner les armes en fonction du bloc */
+            if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==73)){
+                this.arme="bow";
+            }
+            if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==72)){
+                this.arme="sword";
+            }
+
+            /* Test eau */ 
+            if((level.getTile(this.x+16>>5,this.y+16>>5).getId() ==3) || (level.getTile(this.x+16>>5,this.y+16>>5).getId() <=144 && level.getTile(this.x+16>>5,this.y+16>>5).getId() >=130)){
+                isSwimming = true;
+            }
+
+            if((level.getTile(this.x+16>>5,this.y+16>>5).getId() !=3) && (level.getTile(this.x+16>>5,this.y+16>>5).getId() >144 || level.getTile(this.x+16>>5,this.y+16>>5).getId() <130)){
+                isSwimming = false;
+            }
+
+
+            /* Interaction */
+            if (input.interactionkey.isPressed()) {
+                this.wantToTalk=true;
+            }
+            
+          
+         }
+        else{
+            this.isDashing=false;
+            this.isMoving=false;
+           
+        }
+
+        /* Ticks */
         tickCount++;
         cooldownDash++; //on incrémente le cooldown du dash
     }
@@ -162,65 +190,64 @@ public class Player extends Mob {
             cooldownAbility2activated=false;
         }
         
-        if (input.ability1.isPressed()&& cooldownAbility1> 500){
-            cooldownAbility1activated=true;
-            cooldownAbility1=0;
+        if(!this.interaction){
             
-        }
-        
-         if (input.ability2.isPressed()&& cooldownAbility2> 500){
-            cooldownAbility2activated=true;
-            cooldownAbility2=0;
-            
-        }
-         
-        if ( cooldownAbility1activated==true){
-            damage=3;
-        }
-        
-         if (input.attack.isPressed()&& cooldownAttack> 40 && "bow".equals(this.arme)){
-            
-            newarrow.add(this.x);
-            newarrow.add(this.y);
-            newarrow.add(this.movingDir); 
-            newarrow.add(damage);
-            List<Integer> copy = new ArrayList<>(newarrow);
-            
-            arrow.add(copy);  
-            newarrow.clear();
-            cooldownAttack=0; 
-        }
-         
-         
-        if ("bow".equals(this.arme)){
-            
-            int idx=0;
-            arrowused.clear();
-            for (List<Integer> coordonate: arrow) {
+            if (input.ability1.isPressed()&& cooldownAbility1> 500){
+                cooldownAbility1activated=true;
+                cooldownAbility1=0;
 
-                if (level.attackEntities( screen, name, coordonate.get(0) -16,   coordonate.get(0) +16, coordonate.get(1) -16,  coordonate.get(1) + 16, damage)){   /* On effectue les dégats sur les fleches les fleches */
-                    arrowused.add(idx);
-                    if ( cooldownAbility2activated){
-                        this.pv+=damage;
+            }
+
+             if (input.ability2.isPressed()&& cooldownAbility2> 500){
+                cooldownAbility2activated=true;
+                cooldownAbility2=0;
+
+            }
+
+            if ( cooldownAbility1activated==true){
+                damage=3;
+            }
+
+             if (input.attack.isPressed()&& cooldownAttack> 40 && "bow".equals(this.arme)){
+
+                newarrow.add(this.x);
+                newarrow.add(this.y);
+                newarrow.add(this.movingDir); 
+                newarrow.add(damage);
+                List<Integer> copy = new ArrayList<>(newarrow);
+
+                arrow.add(copy);  
+                newarrow.clear();
+                cooldownAttack=0; 
+            }
+
+
+            if ("bow".equals(this.arme)){
+
+                int idx=0;
+                arrowused.clear();
+                for (List<Integer> coordonate: arrow) {
+
+                    if (level.attackEntities( screen, name, coordonate.get(0) -16,   coordonate.get(0) +16, coordonate.get(1) -16,  coordonate.get(1) + 16, damage)){   /* On effectue les dégats sur les fleches les fleches */
+                        arrowused.add(idx);
+                        if ( cooldownAbility2activated){
+                            this.pv+=damage;
+                        }
+
+                    }
+                    if (coordonate.get(0)>level.width*32 || coordonate.get(0)<0 || coordonate.get(1)>level.height*32 || coordonate.get(1) <0){
+                        arrowused.add(idx);
                     }
 
+                    idx+=1;
                 }
-                if (coordonate.get(0)>level.width*32 || coordonate.get(0)<0 || coordonate.get(1)>level.height*32 || coordonate.get(1) <0){
-                    arrowused.add(idx);
-        
-                }
-                
-                idx+=1;
-            }
             
+            }
             for (int i=0;i<arrowused.size();i++) {  /* On actualise les fleches */
                 int removedarrow = arrowused.get(i);
                 arrow.remove( removedarrow);
             }
           
-
-            
-
 
             for (List<Integer> coordonate: arrow) {
                 switch (coordonate.get(2)) {
@@ -243,44 +270,47 @@ public class Player extends Mob {
         }
         
         
-        
-        if (input.attack.isPressed()&& cooldownAttack> 40 && "sword".equals(this.arme)){
-            
-            cooldownAttack=0;
-            switch (movingDir) {
-                case 0:
-                    if (level.attackEntities( screen, name, this.x -32,   this.x +32, this.y -64,  this.y - 16, damage)) {
-                        if ( cooldownAbility2activated){
-                            this.pv+=damage;
+        if(!interaction){
+  
+
+            if (input.attack.isPressed()&& cooldownAttack> 40 && "sword".equals(this.arme)){
+
+                cooldownAttack=0;
+                switch (movingDir) {
+                    case 0:
+                        if (level.attackEntities( screen, name, this.x -32,   this.x +32, this.y -64,  this.y , damage)) {
+                            if ( cooldownAbility2activated){
+                                this.pv+=damage;
+                            }
                         }
-                    }
-                    break;
-                case 1:
-                    if (level.attackEntities( screen, name, this.x -32,   this.x +32, this.y +16,  this.y +64, damage)){
-                        if ( cooldownAbility2activated){
-                            this.pv+=damage;
+                        break;
+                    case 1:
+                        if (level.attackEntities( screen, name, this.x -32,   this.x +32, this.y ,  this.y +64, damage)){
+                            if ( cooldownAbility2activated){
+                                this.pv+=damage;
+                            }
                         }
-                    }
-                    break;
-                case 2:
-                    if(level.attackEntities( screen, name, this.x -64,   this.x -16, this.y -32,  this.y + 32, damage)){
-                        if ( cooldownAbility2activated){
-                            this.pv+=damage;
+                        break;
+                    case 2:
+                        if(level.attackEntities( screen, name, this.x -64,   this.x, this.y -32,  this.y + 32, damage)){
+                            if ( cooldownAbility2activated){
+                                this.pv+=damage;
+                            }
                         }
-                    }
-                    break;
-                case 3:
-                    if (level.attackEntities( screen, name, this.x +16,   this.x +64, this.y -32,  this.y +32, damage)){
-                        if ( cooldownAbility2activated){
-                            this.pv+=damage;
+                        break;
+                    case 3:
+                        if (level.attackEntities( screen, name, this.x,   this.x +64, this.y -32,  this.y +32, damage)){
+                            if ( cooldownAbility2activated){
+                                this.pv+=damage;
+                            }
                         }
-                    }
-                    break;
-                default:
-                    break;
-            } 
+                        break;
+                    default:
+                        break;
+                } 
+            }
+                  
         }
-        
         
    
        
@@ -344,8 +374,33 @@ public class Player extends Mob {
                     } 
             }
  
+        if ( xOffset<290){
+                xAbility=290;
+        }
+        if ( yOffset<143){
+                yAbility=143;
+        }
+       
+        screen.render(xAbility-128, yAbility +113, 736, 0x00, 1);   /* Affichage de des abilités  */
+        screen.render(xAbility-96, yAbility +113, 737, 0x00, 1);    
+        screen.render(xAbility-64, yAbility +113, 738, 0x00, 1);  
+        screen.render(xAbility-32, yAbility +113, 739, 0x00, 1);  
+        screen.render(xAbility, yAbility +113, 740, 0x00, 1); 
+        screen.render(xAbility+32, yAbility +113, 741, 0x00, 1);  
+        screen.render(xAbility+64, yAbility +113, 742, 0x00, 1);  
+        screen.render(xAbility+96, yAbility +113, 743, 0x00, 1);  
+        screen.render(xAbility+128, yAbility +113, 744, 0x00, 1);  
         
-        
+        screen.render(xAbility-128, yAbility +145, 768, 0x00, 1);  
+        screen.render(xAbility-96, yAbility +145, 769, 0x00, 1);      
+        screen.render(xAbility-64, yAbility +145, 770, 0x00, 1);  
+        screen.render(xAbility-32, yAbility +145, 771, 0x00, 1);  
+        screen.render(xAbility, yAbility +145, 772, 0x00, 1); 
+        screen.render(xAbility+32, yAbility+145, 773, 0x00, 1);  
+        screen.render(xAbility+64, yAbility +145, 774, 0x00, 1);  
+        screen.render(xAbility+96, yAbility +145, 775, 0x00, 1);  
+        screen.render(xAbility+128, yAbility +145, 776, 0x00, 1);  
+         
         if (cooldownDash>40 && !isSwimming){        /* Affichage du DASH  */
             screen.render(xOffset-20, yOffset +35, 320, 0x00, 1);
         }
@@ -354,32 +409,28 @@ public class Player extends Mob {
         String Pv = String.valueOf(this.pv);    /* Affichage des PV  */
         Font.render(Pv, screen, xOffset +20 + Pv.length(),yOffset -12, 1); 
 
-        if ( xOffset<290){
-                xAbility=290;
-        }
-        if ( yOffset<143){
-                yAbility=143;
-        }
         
+        
+       
     
         if (cooldownAbility1> 500){    /* Affichage ability1  */
             
-            screen.render(xAbility-100, yAbility +130, 352, 0x00, 2);
+             screen.render(xAbility-75, yAbility +139, 295, 0x00, 1);
         }else {
-             screen.render(xAbility-100,yAbility +130, 384, 0x00, 2);
+             screen.render(xAbility-75,yAbility +139, 327, 0x00, 1);
         }
         
-         if (cooldownAbility2> 500){    /* Affichage ability1  */
+         if (cooldownAbility2> 500){    /* Affichage ability2  */
             
-            screen.render(xAbility-50, yAbility +130, 353, 0x00, 2);
+             screen.render(xAbility-50, yAbility +139, 296, 0x00, 1);
         }else {
-             screen.render(xAbility-50,yAbility +130, 385, 0x00, 2);
+             screen.render(xAbility-50,yAbility +139, 328, 0x00, 1);
         }
          
          if (cooldownAbility2activated){    /* ABILITY 2 :  */
              
                  if(tickCount %40 <10){                     
-                     screen.render(xOffset, yOffset  , 293, 0x00, 1);
+                    screen.render(xOffset, yOffset  , 293, 0x00, 1);
                     screen.render(xOffset+32, yOffset , 294, 0x00, 1);
                     screen.render(xOffset, yOffset+32, 325, 0x00, 1);
                     screen.render(xOffset+32, yOffset+32, 326, 0x00, 1);
@@ -561,7 +612,7 @@ public class Player extends Mob {
     }
         
     public boolean isAttacked( String name, int xMin , int xMax, int yMin, int yMax, int damage ){
-        if (this.name !=name ){
+        if (!this.name.equals(name) ){
             this.pv=pv-damage;
             return true;
         }
@@ -606,8 +657,8 @@ public class Player extends Mob {
     public boolean interaction(int x, int y) {
         return false;
     }
+    public boolean interactiondialogue(Entity e) {
+        return false;
+    }
 
-
-    
-    
 }

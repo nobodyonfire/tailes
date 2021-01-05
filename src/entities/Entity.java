@@ -10,6 +10,9 @@ public abstract class Entity {
     protected Level level;
     protected int pv;
     public boolean interaction=false;
+    public boolean wantToTalk=false;
+    public boolean endTalking=false;
+    public boolean player=false;
     
     public Entity(Level level){
         init(level);
@@ -30,7 +33,10 @@ public abstract class Entity {
 
     public abstract boolean interaction(int x , int y);
     
+    public abstract boolean interactiondialogue(Entity e);
+    
     public int getPv() {   //récupère les PVs
        return pv;
    } 
+    
 }

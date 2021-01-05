@@ -28,7 +28,6 @@ public class Cat extends Mob {
         int ya=0;
         Random rn = new Random();
         
-  
         
 
         if (tickCount%20==0)
@@ -47,11 +46,17 @@ public class Cat extends Mob {
   
      
 
-        if (xa !=0 || ya !=0){
+        if ((xa !=0 || ya !=0 ) && !isSwimming){
             move(xa,ya);
             
             isMoving =true; 
-        } else {
+        } 
+        else if((xa !=0 || ya !=0 ) && isSwimming){
+        	move(-xa,-ya);
+        	
+        	isMoving=true;
+        }
+        else {
             isMoving =false;
         }
         
@@ -157,6 +162,11 @@ public class Cat extends Mob {
 
  public boolean interaction(int x, int y) {
      return false;
+    }
+
+    @Override
+    public boolean interactiondialogue(Entity e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 
