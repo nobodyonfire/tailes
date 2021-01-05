@@ -40,12 +40,13 @@ public class InputHandler implements KeyListener{
     public Key dash = new Key();   //on définit la variable pour la touche du dash
     
     public Key interactionkey = new Key();
-    
+    public Key skip = new Key();
     public Key attack = new Key();   //on définit la variable pour la l'attaque
     
     public Key ability1 = new Key();
     
     public Key ability2 = new Key();
+    
     
     
 
@@ -94,6 +95,10 @@ public class InputHandler implements KeyListener{
         
          if (keyCode == KeyEvent.VK_E) {   //On définit la touche qui correspond à l'interaction
         	interactionkey.toggle(isPressed);
+        }
+         
+         if (keyCode == KeyEvent.VK_ENTER) {   //On définit la touche qui correspond au skip
+        	skip.toggle(isPressed);
         }
             
             

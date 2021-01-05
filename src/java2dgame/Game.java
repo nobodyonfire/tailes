@@ -86,10 +86,11 @@ public class Game extends Canvas implements Runnable {
 		level = new Level("/Level/level1.png");
                 player = new Player(level,350,300,input,2,"bow");
                 Cat = new Cat(level,"jean",360,360,1);
-                pnj1 = new Pnj1(level,"Mickael",360,500,1);
+                pnj1 = new Pnj1(level,"Mickael",360,500,input,1);
                  
                 level.addEntity(player);
                 level.addEntity(Cat);
+                level.addEntity(pnj1);
                 
 
                
