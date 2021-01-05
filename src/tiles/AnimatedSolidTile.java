@@ -11,13 +11,14 @@ public class AnimatedSolidTile extends BasicTile {
     private long lastIterationTime;
     private int animationSwitchDelay;
 
-    public AnimatedSolidTile(int id, int[][] animationCoords, int levelColour, int animationSwitchDelay,boolean emitter) {
+    public AnimatedSolidTile(int id, int[][] animationCoords, int levelColour, int animationSwitchDelay,boolean emitter,int solidType) {
         super(id, animationCoords[0][0], animationCoords[0][1], levelColour,emitter);
         this.animationTileCoords = animationCoords;
         this.currentAnimationIndex = 0;
         this.lastIterationTime = System.currentTimeMillis();
         this.animationSwitchDelay = animationSwitchDelay;
         this.solid= true;
+        this.solidType = solidType; 
     }
 
     

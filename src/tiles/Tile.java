@@ -8,7 +8,7 @@ public abstract class Tile {
  
 	public static final Tile[] tiles = new Tile[512];
 	public static final Tile VOID = new BasicTile(0, 0, 0,0xFF000000,false);
-	public static final Tile STONE = new BasicSolidTile(1, 1, 0,0xFF555555,false);
+	public static final Tile STONE = new BasicSolidTile(1, 1, 0,0xFF555555,false,0);
 	public static final Tile GRASS = new BasicTile(2, 2, 0,0xFF00FF00,false);
         
         
@@ -17,36 +17,36 @@ public abstract class Tile {
         public static final Tile Grass1 = new BasicTile(5,4,0,0xFF00FE00,false);
                 
         
-        public static final Tile lamptop = new AnimatedSolidTile(10,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,300,true); /*  [10/0/0]  */
-        public static final Tile lampbottom = new BasicSolidTile(11, 2, 8,0xFF0B0000,false); /*  [11/0/0]  */
+        public static final Tile lamptop = new AnimatedSolidTile(10,new int[][]{{2,7},{3,7},{4,7}},0xFF0A0000,300,true,0); /*  [10/0/0]  */
+        public static final Tile lampbottom = new BasicSolidTile(11, 2, 8,0xFF0B0000,false,0); /*  [11/0/0]  */
         
-        public static final Tile Brazier = new AnimatedSolidTile(12,new int[][]{{0,7},{1,7},{0,8},{1,8}},0xFF0C0000,300,false); /*  [12/0/0]  */
+        public static final Tile Brazier = new AnimatedSolidTile(12,new int[][]{{0,7},{1,7},{0,8},{1,8}},0xFF0C0000,300,false,0); /*  [12/0/0]  */
         
         
-        public static final Tile benchrighttop = new BasicSolidTile(13,5,7,0xFF0D0000,false); /*  [13/0/0]  */
-        public static final Tile benchrightbottom = new BasicSolidTile(14,5,8,0xFF0E0000,false); /*  [14/0/0]  */
+        public static final Tile benchrighttop = new BasicSolidTile(13,5,7,0xFF0D0000,false,0); /*  [13/0/0]  */
+        public static final Tile benchrightbottom = new BasicSolidTile(14,5,8,0xFF0E0000,false,0); /*  [14/0/0]  */
         
-        public static final Tile benchlefttop = new BasicSolidTile(15,8,7,0xFF0F0000,false); /*  [15/0/0]  */
-        public static final Tile benchleftbottom = new BasicSolidTile(16,8,8,0xFF100000,false); /*  [16/0/0]  */
+        public static final Tile benchlefttop = new BasicSolidTile(15,8,7,0xFF0F0000,false,0); /*  [15/0/0]  */
+        public static final Tile benchleftbottom = new BasicSolidTile(16,8,8,0xFF100000,false,0); /*  [16/0/0]  */
         
-        public static final Tile benchltoptop = new BasicSolidTile(17,6,7,0xFF110000,false); /*  [17/0/0]  */
-        public static final Tile benchtopbottom = new BasicSolidTile(18,7,7,0xFF120000,false); /*  [18/0/0]  */
+        public static final Tile benchltoptop = new BasicSolidTile(17,6,7,0xFF110000,false,0); /*  [17/0/0]  */
+        public static final Tile benchtopbottom = new BasicSolidTile(18,7,7,0xFF120000,false,0); /*  [18/0/0]  */
         
-        public static final Tile benchlbottomtop = new BasicSolidTile(19,6,8,0xFF130000,false); /*  [19/0/0]  */
-        public static final Tile benchbottombottom = new BasicSolidTile(20,7,8,0xFF140000,false); /*  [20/0/0]  */
+        public static final Tile benchlbottomtop = new BasicSolidTile(19,6,8,0xFF130000,false,0); /*  [19/0/0]  */
+        public static final Tile benchbottombottom = new BasicSolidTile(20,7,8,0xFF140000,false,0); /*  [20/0/0]  */
         
-        public static final Tile tree11 = new BasicSolidTile (21,2,9,0xFF150000,true); 
-        public static final Tile tree21 = new BasicSolidTile (22,3,9,0xFF160000,true);
-        public static final Tile tree31 = new BasicSolidTile (23,2,10,0xFF170000,true);
-        public static final Tile tree41 = new BasicSolidTile (24,3,10,0xFF180000,true);
-        public static final Tile tree51 = new BasicSolidTile (25,2,11,0xFF190000,false);
-        public static final Tile tree61 = new BasicSolidTile (26,3,11,0xFF1A0000,false);  
+        public static final Tile tree11 = new BasicSolidTile (21,2,9,0xFF150000,true,0); 
+        public static final Tile tree21 = new BasicSolidTile (22,3,9,0xFF160000,true,0);
+        public static final Tile tree31 = new BasicSolidTile (23,2,10,0xFF170000,true,0);
+        public static final Tile tree41 = new BasicSolidTile (24,3,10,0xFF180000,true,0);
+        public static final Tile tree51 = new BasicSolidTile (25,2,11,0xFF190000,false,0);
+        public static final Tile tree61 = new BasicSolidTile (26,3,11,0xFF1A0000,false,0);  
         public static final Tile tree71 = new BasicTile (27,2,12,0xFF1B0000,false);
         public static final Tile tree81 = new BasicTile (28,3,12,0xFF1C0000,false);  
         
-        public static final Tile flowerpot1 = new BasicSolidTile (29,9,7,0xFF1D0000,false);
-        public static final Tile flowerpot2 = new BasicSolidTile (30,9,8,0xFF1E0000,false);
-        public static final Tile flowerpot3 = new BasicSolidTile (31,10,7,0xFF1F0000,false);
+        public static final Tile flowerpot1 = new BasicSolidTile (29,9,7,0xFF1D0000,false,0);
+        public static final Tile flowerpot2 = new BasicSolidTile (30,9,8,0xFF1E0000,false,0);
+        public static final Tile flowerpot3 = new BasicSolidTile (31,10,7,0xFF1F0000,false,0);
         
         public static final Tile muralwall = new BasicTile (39,8,2,0xFF270000,false);
         public static final Tile muralmiddle = new BasicTile (40,9,0,0xFF280000,false);
@@ -67,11 +67,11 @@ public abstract class Tile {
 
         
         
-        public static final Tile Cliff1 = new BasicSolidTile(100,3,0,0xFF010000,false);
-        public static final Tile Cliff2 = new BasicSolidTile(101,5,0,0xFF010001,false);
-        public static final Tile Cliffendup = new BasicSolidTile(102,3,1,0xFF020000,false);
-        public static final Tile Cliffendleft = new BasicSolidTile(103,4,1,0xFF030000,false);
-        public static final Tile Cliffend= new BasicSolidTile(104,2,1,0xFF040000,false);
+        public static final Tile Cliff1 = new BasicSolidTile(100,3,0,0xFF010000,false,0);
+        public static final Tile Cliff2 = new BasicSolidTile(101,5,0,0xFF010001,false,0);
+        public static final Tile Cliffendup = new BasicSolidTile(102,3,1,0xFF020000,false,0);
+        public static final Tile Cliffendleft = new BasicSolidTile(103,4,1,0xFF030000,false,0);
+        public static final Tile Cliffend= new BasicSolidTile(104,2,1,0xFF040000,false,0);
         
         public static final Tile roadhorizontal1 = new BasicTile(64,0,2,0xFF400000,false); /*  [64/0/0]  */
         public static final Tile roadhorizontal2 = new BasicTile(65,1,2,0xFF410000,false); /*  [65/0/0]  */
@@ -148,23 +148,23 @@ public abstract class Tile {
         public static final Tile fountain10 = new BasicTile(210,31,1,0xFF000A00,true); /*  [0/10/0]  */
         public static final Tile fountain11 = new AnimatedTile(211,new int[][]{{27,2},{27,9},{27,16},{27,9}},0xFF000B00,300,false); /*  [0/11/0]  */
         public static final Tile fountain12 = new AnimatedTile(212,new int[][]{{28,2},{28,9},{28,2}},0xFF000C00,300,true); /*  [0/12/0]  */
-        public static final Tile fountain13 = new BasicSolidTile(213,29,2,0xFF000D00,true); /*  [0/13/0]  */
-        public static final Tile fountain14 = new BasicSolidTile(214,30,2,0xFF000E00,true); /*  [0/14/0]  */
+        public static final Tile fountain13 = new BasicSolidTile(213,29,2,0xFF000D00,true,0); /*  [0/13/0]  */
+        public static final Tile fountain14 = new BasicSolidTile(214,30,2,0xFF000E00,true,0); /*  [0/14/0]  */
         public static final Tile fountain15 = new BasicTile(215,31,2,0xFF000F00,false); /*  [0/15/0]  */
-        public static final Tile fountain16 = new AnimatedSolidTile(216,new int[][]{{27,3},{27,10},{27,17}},0xFF001000,300,false); /*  [0/16/0]  */
-        public static final Tile fountain17 = new AnimatedSolidTile(217,new int[][]{{28,3},{28,10},{28,17}},0xFF001100,300,false); /*  [0/17/0]  */
-        public static final Tile fountain18 = new AnimatedSolidTile(218,new int[][]{{29,3},{29,10},{29,17}},0xFF001200,300,false); /*  [0/18/0]  */
-        public static final Tile fountain19 = new AnimatedSolidTile(219,new int[][]{{30,3},{30,10},{30,17}},0xFF001300,300,false); /*  [0/19/0]  */
-        public static final Tile fountain20 = new AnimatedSolidTile(220,new int[][]{{31,3},{31,10},{31,17}},0xFF001400,300,false); /*  [0/20/0]  */
-        public static final Tile fountain21 = new AnimatedSolidTile(221,new int[][]{{27,4},{27,11},{27,18}},0xFF001500,300,false); /*  [0/21/0]  */
-        public static final Tile fountain22 = new AnimatedSolidTile(222,new int[][]{{28,4},{28,11},{28,18}},0xFF001600,300,false); /*  [0/22/0]  */
-        public static final Tile fountain23 = new AnimatedSolidTile(223,new int[][]{{29,4},{29,11},{29,18}},0xFF001700,300,false); /*  [0/23/0]  */
-        public static final Tile fountain24 = new AnimatedSolidTile(224,new int[][]{{30,4},{30,11},{30,18}},0xFF001800,300,false); /*  [0/24/0]  */
-        public static final Tile fountain25 = new AnimatedSolidTile(225,new int[][]{{31,4},{31,11},{31,18}},0xFF001900,300,false); /*  [0/25/0]  */
+        public static final Tile fountain16 = new AnimatedSolidTile(216,new int[][]{{27,3},{27,10},{27,17}},0xFF001000,300,false,0); /*  [0/16/0]  */
+        public static final Tile fountain17 = new AnimatedSolidTile(217,new int[][]{{28,3},{28,10},{28,17}},0xFF001100,300,false,0); /*  [0/17/0]  */
+        public static final Tile fountain18 = new AnimatedSolidTile(218,new int[][]{{29,3},{29,10},{29,17}},0xFF001200,300,false,0); /*  [0/18/0]  */
+        public static final Tile fountain19 = new AnimatedSolidTile(219,new int[][]{{30,3},{30,10},{30,17}},0xFF001300,300,false,0); /*  [0/19/0]  */
+        public static final Tile fountain20 = new AnimatedSolidTile(220,new int[][]{{31,3},{31,10},{31,17}},0xFF001400,300,false,0); /*  [0/20/0]  */
+        public static final Tile fountain21 = new AnimatedSolidTile(221,new int[][]{{27,4},{27,11},{27,18}},0xFF001500,300,false,1); /*  [0/21/0]  */
+        public static final Tile fountain22 = new AnimatedSolidTile(222,new int[][]{{28,4},{28,11},{28,18}},0xFF001600,300,false,0); /*  [0/22/0]  */
+        public static final Tile fountain23 = new AnimatedSolidTile(223,new int[][]{{29,4},{29,11},{29,18}},0xFF001700,300,false,0); /*  [0/23/0]  */
+        public static final Tile fountain24 = new AnimatedSolidTile(224,new int[][]{{30,4},{30,11},{30,18}},0xFF001800,300,false,0); /*  [0/24/0]  */
+        public static final Tile fountain25 = new AnimatedSolidTile(225,new int[][]{{31,4},{31,11},{31,18}},0xFF001900,300,false,2); /*  [0/25/0]  */
         public static final Tile fountain26 = new BasicTile(226,27,5,0xFF001A00,false); /*  [0/26/0]  */
-        public static final Tile fountain27 = new AnimatedSolidTile(227,new int[][]{{28,5},{28,12},{28,19}},0xFF001B00,300,false); /*  [0/27/0]  */
-        public static final Tile fountain28 = new AnimatedSolidTile(228,new int[][]{{29,5},{29,12},{29,19}},0xFF001C00,300,false); /*  [0/28/0]  */
-        public static final Tile fountain29 = new AnimatedSolidTile(229,new int[][]{{30,5},{30,12},{30,19}},0xFF001D00,300,false); /*  [0/29/0]  */
+        public static final Tile fountain27 = new AnimatedSolidTile(227,new int[][]{{28,5},{28,12},{28,19}},0xFF001B00,300,false,1); /*  [0/27/0]  */
+        public static final Tile fountain28 = new AnimatedSolidTile(228,new int[][]{{29,5},{29,12},{29,19}},0xFF001C00,300,false,0); /*  [0/28/0]  */
+        public static final Tile fountain29 = new AnimatedSolidTile(229,new int[][]{{30,5},{30,12},{30,19}},0xFF001D00,300,false,2); /*  [0/29/0]  */
         public static final Tile fountain30 = new BasicTile(230,31,5,0xFF001E00,false); /*  [0/30/0]  */
         public static final Tile fountain31 = new BasicTile(231,27,6,0xFF001F00,false); /*  [0/31/0]  */
         public static final Tile fountain32 = new BasicTile(232,28,6,0xFF002000,false); /*  [0/32/0]  */
@@ -210,6 +210,7 @@ public abstract class Tile {
         
 	protected int id;
 	protected boolean solid;
+	protected int solidType; //type de solid ( pour déterminer la forme ) 1 haut droit 2 haut gauche 3 bas gauche 4 bas droit 
     	protected boolean emitter =false;
         private int levelColour;
         
@@ -220,6 +221,9 @@ public abstract class Tile {
 			throw new RuntimeException("Duplicate tile id on" + id);
 		}
 		this.solid = isSolid;
+		if(!isSolid) {
+			this.solidType=0; // Définir le type de solid que c'est dans basicsolidtile et non pas ici (player et mod gère les collisions )
+		}
 		this.emitter = isEmitter;
                 this.levelColour = levelColour;
 		tiles[id] = this;
@@ -232,6 +236,10 @@ public abstract class Tile {
  
 	public boolean isSolid() {
 		return solid;
+	}
+	
+	public int getSolidType() {
+		return solidType;
 	}
  
 	public boolean isEmitter() {
