@@ -1,6 +1,7 @@
 package Level;
 
 import entities.Entity;
+import entities.Player;
 import gfx.Screen;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -96,6 +97,7 @@ public class Level {
 
     public void tick() {
         
+   
         for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) { 
             
             Entity e= iterator.next();
@@ -104,16 +106,53 @@ public class Level {
             if(e.getPv()<=0) {     // Ici on veut voir si les unitées sont mortes
                 iterator.remove();
             }
-             if(e.interaction==true){
-                for (Entity einteract: entities){
-                    if(einteract.interaction(e.x, e.y)){
+            
+            
+                  
+            if(e.player==true && e.wantToTalk==true){
+                for (Entity einteract: entities){  
+                    if (einteract.interaction(e.x, e.y)){
+                        einteract.interactiondialogue(e);
                         e.interaction=true;
+                        einteract.interaction=true;   
+                    }  
+                    else {
+                        e.interaction=false;
+                        einteract.interaction=false;   
+
                     }
-                }
-                e.interaction=false;
+                    
+                    if (einteract.endTalking==true){
+                        e.interaction=false;
+                        einteract.interaction=false;  
+                        e.wantToTalk=false;
+                         
+                    }   
+                } 
             }
-           
+            
+            
+            
+            
+            /*
+            if(e.interaction==true && e.canInteract==1){
+               for (Entity einteract: entities){   
+                   if(e.interaction==true && einteract.canInteract==2){
+                           einteract.interaction=false;
+                           e.interaction=false;
+                           
+                   }
+                   if(einteract.interaction(e.x, e.y)){
+                       einteract.interaction=true;
+                   } 
+                   
+                    
+                }
+            }
+             */
         }
+           
+        
 
         for (Tile t : Tile.tiles){
 
@@ -126,8 +165,8 @@ public class Level {
     public void tickattack(Screen screen){
         
         for (Entity e : entities){
+            e.tickattack(screen);     
             
-            e.tickattack(screen);         
         }
     }
 
@@ -168,18 +207,23 @@ public class Level {
                             getTileUP(x, y).render(screen, this, x << 5, y << 5);
                     }
             }
+            
+            
     }
         
     public void renderEntities(Screen screen){
         for (Entity e : entities){
             e.render(screen);
+            
+      
         }
     }
     
     public boolean attackEntities(Screen screen,String name, int xMin , int xMax, int yMin, int yMax, int damage) {
-
+        
+        attacked = false;
         for (Entity e : entities){
-            attacked = false;
+            
             destroy = e.isAttacked( name,  xMin ,  xMax, yMin,yMax, damage );
             if (attacked== false && destroy==false ){
                 attacked= false;
@@ -191,7 +235,6 @@ public class Level {
         if (entities.isEmpty()){
             return false;
         }
-      
         return attacked;
         
     }
